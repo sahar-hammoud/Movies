@@ -1,0 +1,35 @@
+﻿@model List<Movie>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Movies</title> 
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4 text-center">List of Movies</h1>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            @foreach (var movie in Model)
+            {
+                <div class="col">
+                    <div class="card movie-card" data-movie-id="@movie.Id">
+                    <div class="movie-poster"> <A href="/Home/MovieDetails/@movie.Id"><img src="https://image.tmdb.org/t/p/w400/@movie.PosterPath" class="card-img-top" alt="..."></A></div>
+                    <div class="card-body">
+                    <h5 class="card-title">@movie.Title</h5>
+                    <div class="text-primary">Release Date: @movie.ReleaseDate</div>
+                    <p class="card-text trim-text">@movie.Overview</p>
+                    </div>     
+                </div>
+            </div>
+           }
+       </div>
+    </div>
+</body>
+</html>
+
+
+
+

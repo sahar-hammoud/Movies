@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieApp.Backend", "PopularMovies\MovieApp.Backend.csproj", "{9A8BF7B9-2ECD-4A86-B3AB-D5B76AC2E6B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieApp.Frontend", "MovieApp\MovieApp.Frontend.csproj", "{ABEAFF9A-050C-4173-833A-7469FB16DB61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A8BF7B9-2ECD-4A86-B3AB-D5B76AC2E6B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A8BF7B9-2ECD-4A86-B3AB-D5B76AC2E6B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A8BF7B9-2ECD-4A86-B3AB-D5B76AC2E6B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A8BF7B9-2ECD-4A86-B3AB-D5B76AC2E6B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABEAFF9A-050C-4173-833A-7469FB16DB61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABEAFF9A-050C-4173-833A-7469FB16DB61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABEAFF9A-050C-4173-833A-7469FB16DB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABEAFF9A-050C-4173-833A-7469FB16DB61}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5EC69309-AD19-4D3E-8B9F-3CC50BE9FFAD}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,70 @@
+﻿.index-page {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+}
+
+.index-page .title {
+    margin-bottom: 40px;
+}
+
+.index-page .container {
+    text-align: center;
+    border: 20px solid;
+}
+
+.index-page .google-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #212529;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.index-page .google-btn img {
+    width: 24px;
+    margin-right: 15px;
+}
+
+.index-page #signIn {
+    margin-top: 30px;
+}
+
+.index-page .movie-img, .index-page .movie-signIn {
+    padding-top: 35px;
+}
+
+.error-page {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+.error-page .container {
+    max-width: 600px;
+    text-align: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.error-page h1 {
+    color: #dc3545;
+}
+
+.error-page p {
+    margin-bottom: 15px;
+}

@@ -1,0 +1,179 @@
+﻿@model MovieViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+</head>
+<body>
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://image.tmdb.org/t/p/w500/@Model.MovieDetails.PosterPath" class="w-100" alt="@Model.MovieDetails.Title">
+            </div>
+            <div class="col-md-8">
+                <div class="text-end">
+                   <button class="btn btn-primary" id="addToOfflineListBtn"><i class="fas fa-plus"></i> Add to Offline List</button>
+                   </div>
+                <h3>@Model.MovieDetails.Title</h3>
+                    <div><i class="fas fa-star"></i> @Model.MovieDetails.VoteAverage</div>
+                    <p>@Model.MovieDetails.Overview</p>
+
+               @foreach (var genre in Model.MovieDetails.Genres)
+                {                
+                    <span class="border rounded-4 p-2 d-inline-block me-2"> @genre.Name</span> 
+                }            
+            </div>
+        </div>
+       
+        @if (Model.Actors.Count > 0)
+        {
+            <div>
+                <h2 class="mb-3 mt-4">Actors</h2>
+                <div class="js-casts">
+                    @foreach (var actor in Model.Actors)
+                    {
+
+                        <div class="p-4">
+                            <div class="card">
+                                <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/@actor.ProfilePath" class="card-img-top" alt="@actor.Name">
+                                <div class="card-body actors-list-item">
+                                    <h5 class="card-title">@actor.Name</h5>
+                                    <p class="card-text font-5">Character: @actor.Character</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        @if (Model.Videos.Count > 0)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="videos-wp">
+                        <h2 class="mb-4 mt-4">Videos</h2>
+                        <div class="border-bottom p-3" id="videoList">
+                            @foreach (var video in Model.Videos)
+                            {
+                                <a href="javascript:;" class="me-2 p-3 video-item-teaser js-video-player" data-video-key="@video.Key">
+                                    <i class="fas fa-chevron-right"></i> @video.Name
+                                </a>
+                            }
+                        </div>
+
+                        <div class="embed-container"><iframe id="videoPlayer" frameborder="0" allowfullscreen></iframe></div>
+                    </div>
+                </div>
+            </div>
+        }
+        
+        @if (Model.Similar.Count > 0)
+        {
+        <h2 class="mb-4 pt-4">Similar Movies</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-4">
+            @foreach (var similar in Model.Similar)
+            {
+            <div class="col">
+                <div class="card movie-card">
+                    <div class="movie-poster"> <A href="/Home/MovieDetails/@similar.Id"><img src="https://image.tmdb.org/t/p/w400/@similar.PosterPath" class="card-img-top" alt="..."></A></div>
+                    <div class="card-body">
+                    <h5 class="card-title h6">@similar.Title</h5>
+                    <div class="text-primary">Release Date: @similar.ReleaseDate</div>
+                    <p class="card-text trim-text">Vote Average: @similar.VoteAverage</p>
+                    </div>     
+                </div>
+            </div>
+            }
+        </div>
+        }
+
+        @if (Model.Reviews.Count > 0)
+        {
+            <h2 class="mb-4 pt-4">Reviews</h2>
+            <div class="row">
+                @foreach (var review in Model.Reviews)
+                {
+                    <div class="col-md-12 mb-3">
+                        <div class="card reviews-wp">
+                            <h3 class="border-bottom card-title p-2">@review.Author</h3>
+                            <div class="brief p-2 legend">@review.Content</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+    </div>
+</body>
+</html>
+
+<script>
+
+     $('.js-casts').slick({
+        dots: true,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        responsive: [
+        {
+            breakpoint: 1024,
+            settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            infinite: true,
+            dots: true
+            }
+        },
+        {
+            breakpoint: 600,
+            settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+            }
+        },
+        {
+            breakpoint: 480,
+            settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+            }
+        }
+
+        ]
+    });
+
+    $(document).ready(function() {
+  
+        var initialVideoKey = $('#videoList .js-video-player:first-child').data('video-key');
+        $('#videoPlayer').attr('src', 'https://www.youtube.com/embed/' + initialVideoKey);
+
+        $('#videoList .js-video-player').click(function (e) {
+            e.preventDefault();
+            var videoKey = $(this).data('video-key');
+            $('#videoPlayer').attr('src', 'https://www.youtube.com/embed/' + videoKey);
+        });
+
+        $('#addToOfflineListBtn').click(function() {
+            var movieDetails = @Html.Raw(Json.Serialize(Model));
+            var jsonData = JSON.stringify(movieDetails);
+            $.ajax({
+                url: '@Url.Action("AddToOfflineList", "Home")',
+				type: "post",            
+                data: { "offlineList": jsonData },
+                success: function(response) {
+                    alert(response); 
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert('Error adding movie to offline list: ' + errorThrown);
+                }
+            });
+        });
+    });
+</script>

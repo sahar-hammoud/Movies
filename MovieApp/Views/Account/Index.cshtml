@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="index-page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In with Google</title>
+     <link rel="stylesheet" href="~/css/styles.css" />
+</head>
+<body class="index-page">   
+    <div class="container">  
+        <div class="row">
+             <div class="col-md-6 mb-5 title"> 
+                 <img class="movie-img" src="images/movie-logo.png" alt="Movie Logo">          
+             </div>
+
+             <div class="col-md-6 mb-5 movie-signIn"> 
+                <h1>Welcom To My Movie App</h1>
+                <form action="/Account/SignInWithGoogle" method="post" id="signIn">
+                    <button type="submit" class="google-btn" onclick="signInWithGoogle()">
+                        <img src="images/google-logo.png" alt="Google Logo">
+                        Sign in with Google
+                    </button>
+                </form>
+             </div>
+        </div>
+    </div>
+</body>
+</html>
